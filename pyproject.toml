@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cluster-tree-retrieval"
+version = "0.1.0"
+description = "RAPTOR-style hierarchical retrieval, fully offline: recursive clustering + extractive summaries into a tree, collapsed-tree and traversal retrieval vs flat baselines, with a reproducible benchmark."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Khadija" }]
+keywords = ["raptor", "retrieval", "rag", "hierarchical", "clustering", "summarization", "long-document"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.3",
+    "fastapi>=0.110",
+    "pydantic>=2.5",
+    "uvicorn>=0.27",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "hypothesis>=6.90", "httpx>=0.27", "ruff>=0.5"]
+
+[project.scripts]
+ctr = "ctr.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/your-github-username/cluster-tree-retrieval"
+Issues = "https://github.com/your-github-username/cluster-tree-retrieval/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ctr = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008"]
